@@ -1,0 +1,92 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "2022-07-26T03:55:01Z",
+    "title" : "dev_prueba_tecnica"
+  },
+  "host" : "ui6e0k6021.execute-api.us-east-1.amazonaws.com",
+  "basePath" : "/dev",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/persona" : {
+      "get" : {
+        "responses" : { }
+      },
+      "post" : {
+        "summary" : "crear persona",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "crearPersona",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/crearPersona"
+          }
+        } ],
+        "responses" : { }
+      },
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "crearPersona" : {
+      "type" : "object",
+      "required" : [ "altura", "color_cabello", "color_ojo", "color_piel", "fecha_nacimiento", "genero", "masa", "nombre" ],
+      "properties" : {
+        "color_cabello" : {
+          "type" : "string",
+          "pattern" : "[a-zA-Z0-9]"
+        },
+        "masa" : {
+          "type" : "number",
+          "minimum" : 0.0
+        },
+        "color_piel" : {
+          "type" : "string",
+          "pattern" : "[a-zA-Z0-9]"
+        },
+        "altura" : {
+          "type" : "number",
+          "minimum" : 0.0
+        },
+        "genero" : {
+          "type" : "string",
+          "pattern" : "[a-zA-Z0-9]"
+        },
+        "fecha_nacimiento" : {
+          "type" : "string",
+          "pattern" : "[a-zA-Z0-9]"
+        },
+        "nombre" : {
+          "type" : "string",
+          "pattern" : "[a-zA-Z0-9]"
+        },
+        "color_ojo" : {
+          "type" : "string",
+          "pattern" : "[a-zA-Z0-9]"
+        }
+      },
+      "title" : "crearPersona",
+      "description" : "crear persona"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+	"definitions": {},
+	"$schema": "http://json-schema.org/draft-01/schema#",
+	"type": "object",
+	"title": "crearPersona",
+	"required": [
+		"nombre",
+		"altura",
+		"masa",
+		"color_cabello",
+		"color_piel",
+		"color_ojo",
+		"fecha_nacimiento",
+        "genero"
+	],
+	"properties": {
+		"nombre": {
+			"type": "string",
+			"pattern": "[a-zA-Z0-9]"
+		},
+		"altura": {
+			"type": "number",
+            "minimum": 0,
+			"pattern": "[0-9]"
+		},
+		"masa": {
+			"type": "number",
+            "minimum": 0,
+			"pattern": "[0-9]"
+		},
+        "color_cabello": {
+			"type": "string",
+			"pattern": "[a-zA-Z0-9]"
+		},
+        "color_piel": {
+			"type": "string",
+			"pattern": "[a-zA-Z0-9]"
+		},
+        "color_ojo": {
+			"type": "string",
+			"pattern": "[a-zA-Z0-9]"
+		},
+        "fecha_nacimiento": {
+			"type": "string",
+            "pattern": "[a-zA-Z0-9]"
+		},
+        "genero": {
+			"type": "string",
+			"pattern": "[a-zA-Z0-9]"
+		}
+	}
+}

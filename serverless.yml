@@ -1,0 +1,80 @@
+service: prueba-tecnica
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  versionFunctions: false
+  stage: dev
+  region: us-east-1
+  #environment:
+  iam:
+    role:
+      name: rsp-role-${self:provider.stage}
+      path: /rsp-role-${self:provider.stage}/
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:*
+            - ses:*
+            - sns:*
+            - dynamodb:*
+          Resource: "*"
+
+custom:
+  documentation:
+    models:
+      - name: "crearPersona"
+        description: "crear persona"
+        contentType: "application/json"
+        schema: ${file(./src/models/crearPersona.json)}
+
+plugins:
+  - serverless-aws-documentation
+
+functions:
+  obtenerPersonas:
+    handler: handler.obtenerPersonas
+    name: obtenerPersonas-${self:provider.stage}
+    memorySize: 128 # mb
+    timeout: 30 # seconds
+    events:
+      - http:
+          path: persona
+          method: GET
+          cors:
+            origin: "*" # <-- Specify allowed origin
+            headers: # <-- Specify allowed headers
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
+  crearPersona:
+    handler: handler.crearPersona
+    name: crearPersona-${self:provider.stage}
+    memorySize: 128 # mb
+    timeout: 30 # seconds
+    events:
+      - http:
+          path: persona
+          method: POST
+          request:
+            schemas:
+              application/json: ${file(./src/models/crearPersona.json)}
+          documentation:
+            summary: "crear persona"
+            requestModels:
+              application/json: "crearPersona"
+          cors:
+            origin: "*" # <-- Specify allowed origin
+            headers: # <-- Specify allowed headers
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
