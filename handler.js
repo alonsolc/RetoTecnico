@@ -19,7 +19,7 @@ const _headers_post = {
 };
 
 const obtenerPersonas = (event, context, callback) => {
-  //context.callbackWaitsForEmptyEventLoop = false;
+  context.callbackWaitsForEmptyEventLoop = false;
   mysql.obtenerPersonas()
     .then((res) => {
       console.log("res", res);
